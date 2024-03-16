@@ -5,7 +5,7 @@
 
 `define default_netname none
 
-module tt_um_example (
+module tt_um_ha (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -17,8 +17,12 @@ module tt_um_example (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+  // assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+    assign ui_in[7:2]=6'b000000;
+    assign uo_out[7:2]=6'b000000;
+    assign uio_in = 0;
   assign uio_out = 0;
   assign uio_oe  = 0;
-
+    assign uo_out[0] = ui_in[0] ^ ui_in[1]; // assigning sum
+    assign uo_out[1] = ui_in[0] & ui_in[1]; // assigning carry
 endmodule
