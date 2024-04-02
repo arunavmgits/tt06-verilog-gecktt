@@ -55,7 +55,7 @@ always @(posedge clk or posedge rst_n) begin
             end
 
             if (res > 8'b00000010) begin
-                case (uio_in)
+                case (uio_in[1:0])
                     2'b00: r1 <= ui_in;
                     2'b01: r2 <= ui_in;
                     2'b10: r3 <= ui_in;
