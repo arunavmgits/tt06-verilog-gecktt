@@ -19,7 +19,7 @@ module tt_um_ha (
   // All output pins must be assigned. If not used, assign to 0.
   // assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
    // assign ui_in[7:2]=6'b000000;
-    assign uo_out[7:1]=7'b0;
+   // assign uo_out[7:1]=7'b0;
    // assign uio_in = 0;
   assign uio_out = 0;
   assign uio_oe  = 0;
@@ -36,7 +36,7 @@ always @(posedge clk or posedge rst_n) begin
         r2 <= 8'b0;
         r3 <= 8'b0;
         r4 <= 8'b0;
-        uo_out[0] <= 1'b0;
+        uo_out <= 8'b0;
     end else begin
         case (uio_in[1:0])
             2'b00: proc = r1;
@@ -46,7 +46,7 @@ always @(posedge clk or posedge rst_n) begin
         endcase
 
         if (proc == ui_in) begin
-            uo_out[0] <= 1'b0;
+            uo_out <= 8'b0;
         end else begin
             if (proc > ui_in) begin
                 res = proc - ui_in;
@@ -61,9 +61,9 @@ always @(posedge clk or posedge rst_n) begin
                     2'b10: r3 <= ui_in;
                     2'b11: r4 <= ui_in;
                 endcase
-                uo_out[0] <= 1'b1;
+                uo_out <= 8'b1;
             end else begin
-                uo_out[0] <= 1'b0;
+                uo_out <= 8'b0;
             end
         end
     end
