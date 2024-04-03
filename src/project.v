@@ -26,7 +26,7 @@ module tt_um_ha (
     co_processor co_processor  (
     .clk(clk),
     .reset(rst_n),
-	.ro(ui_in),
+	.r0(ui_in),
 	.check(uio_in[1:0]),
 	.Q(uo_out[0])
 	
